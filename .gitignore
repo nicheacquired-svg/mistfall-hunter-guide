@@ -1,0 +1,16 @@
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Python (generation scripts live outside this dir)
+__pycache__/
+*.pyc
+
+# Server logs
+*.log
