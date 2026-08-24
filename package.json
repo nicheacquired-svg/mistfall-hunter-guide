@@ -1,0 +1,9 @@
+{
+  "name": "mistfall-hunter-guide",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SEO-optimized fan guide website for Mistfall Hunter - dark fantasy PvPvE extraction ARPG (static HTML, no framework)",
+  "scripts": {
+    "build": "python3 inject_ga.py"
+  }
+}
