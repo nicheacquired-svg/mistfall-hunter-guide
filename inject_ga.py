@@ -73,16 +73,22 @@ def inject_ga(html, ga_id):
 
 
 def main():
-    # 1. Read GA_TRACKING_ID from .env.local
-    env = read_env(ENV_FILE)
-    ga_id = env.get("GA_TRACKING_ID")
+    # 1. Read GA_TRACKING_ID: Vercel env var first, then .env.local fallback
+    ga_id = os.environ.get("GA_TRACKING_ID")
+    source = "Vercel environment variable"
 
     if not ga_id:
-        print(f"[ERROR] GA_TRACKING_ID not found in {ENV_FILE}")
-        print("        Create .env.local with: GA_TRACKING_ID=G-XXXXXXXXXX")
+        env = read_env(ENV_FILE)
+        ga_id = env.get("GA_TRACKING_ID")
+        source = ENV_FILE
+
+    if not ga_id:
+        print(f"[ERROR] GA_TRACKING_ID not found in Vercel env or {ENV_FILE}")
+        print("        Set GA_TRACKING_ID in Vercel Project Settings > Environment Variables")
+        print("        Or create .env.local locally with: GA_TRACKING_ID=G-XXXXXXXXXX")
         return 1
 
-    print(f"[INFO] GA_TRACKING_ID = {ga_id} (from {ENV_FILE})")
+    print(f"[INFO] GA_TRACKING_ID = {ga_id} (from {source})")
 
     # 2. Process all HTML files
     html_files = sorted(glob.glob("*.html"))
