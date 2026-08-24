@@ -14,3 +14,8 @@ __pycache__/
 
 # Server logs
 *.log
+
+# Environment variables (contains GA tracking ID, not for public repo)
+.env.local
+.env
+.env.*
